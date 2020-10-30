@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Villes{% endblock %}
+
+{% block titreVille %}
+ Ville : {{ville.nom}}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-4">
+        <img src="{{asset('images/villes/' ~ ville.nom | lower ~ '.jpg')}}" width="400">
+    </div>
+
+    <div class="col-1"></div>
+
+     <div class="col-7">
+        <h2>Pays : {{ville.pays}}</h2>
+      <h3>Les caracteristiques</h3>
+      <ul>
+          <li>Poupulation : {{ville.carac.population}} habitants</li>
+          <li>{{ville.carac.superficie}} km<sup>2</li>
+          <li>
+                  {% if ville.carac.cotiere %}
+                    Située en bord de mer
+              {% else %} 
+                    Non située en bord de mer  
+              {% endif %}  
+          </li>
+      </ul>
+       
+    </div>
+</div>
+
+{% endblock %}

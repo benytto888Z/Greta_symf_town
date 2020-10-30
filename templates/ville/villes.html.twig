@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Villes{% endblock %}
+
+{% block titreVille %}
+Liste des villes
+{% endblock %}
+
+{% block body %}
+<table class="table">
+  <tr class="thead-dark">
+      <th>Image</th>
+      <th>Nom</th>
+      <th>Pays</th>
+      <th>Population</th>
+      <th>Superficie</th>
+      <th>Côtière</th>
+      <th>Langue</th>
+  </tr>
+
+ {% for ville in villes %}
+    <tr>
+       <td><img src="{{asset('images/villes/' ~ ville.nom ~ '.jpg')}}" width="250"></td>
+      <td><a href="{{path('afficher_ville',{'nom':ville.nom | lower})}}">{{ville.nom}}</a></td>
+      <td>{{ville.pays}}</td>
+      <td>{{ville.carac.population}}</td>
+      <td>{{ville.carac.superficie}} km<sup>2</td>
+      <td>
+          {% if ville.carac.cotiere %}
+                Située en bord de mer
+           {% else %} 
+                Non située en bord de mer  
+           {% endif %}  
+      </td>
+      <td>{{ville.carac.langue}}</td>
+    </tr>
+ {% endfor %}
+
+</table>
+
+
+
+{% endblock %}
